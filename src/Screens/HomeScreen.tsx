@@ -3,6 +3,7 @@ import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import {useTheme} from '@react-navigation/native';
 import ScrollLayout from '../components/layouts/ScrollLayout';
 import type {ExtendedTheme} from '../types';
+import TopBar from '../components/home/TopBar';
 
 type HomeScreenProps = {};
 
@@ -13,6 +14,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
     <ScrollLayout
       scrollViewProps={{style: styles.container}}
       edges={['top', 'left', 'right']}>
+      <TopBar openDrawer={() => {}} />
       <View>
         <Text>Hello World</Text>
       </View>

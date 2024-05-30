@@ -7,6 +7,7 @@ import AppTheme from './theme/theme';
 
 import {navigationRef} from './utils/navigation';
 import HomeScreen from './Screens/HomeScreen';
+import {Text, View} from 'react-native';
 
 export type RootStackParamList = {
   Home?: undefined;

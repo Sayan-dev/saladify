@@ -18,7 +18,6 @@ const ScrollLayout: React.FC<ScrollLayoutProps> = ({
 }) => {
   const theme = useTheme();
   const styles = React.useMemo(() => createStyles(theme), [theme]);
-  console.log(theme);
   return (
     <SafeAreaView style={styles.safeArea} edges={edges}>
       <StatusBar
