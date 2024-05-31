@@ -1,9 +1,9 @@
-import {Image, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {useTheme} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {ExtendedTheme} from '../../../types';
-
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Hamburger from '../../../assets/icons/Hamburger';
 
 type TopBarProps = {
@@ -20,6 +20,8 @@ const TopBar = ({openDrawer}: TopBarProps) => {
       <TouchableOpacity onPress={openDrawer}>
         <Hamburger />
       </TouchableOpacity>
+      {/* <FAIcon name="shopping-basket" color={theme.colors.primary} size={20} /> */}
+      <Icon name="shopping-basket" color={theme.colors.primary} size={24} />
     </View>
   );
 };

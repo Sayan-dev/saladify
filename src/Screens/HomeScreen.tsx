@@ -4,6 +4,7 @@ import {useTheme} from '@react-navigation/native';
 import ScrollLayout from '../components/layouts/ScrollLayout';
 import type {ExtendedTheme} from '../types';
 import TopBar from '../components/home/TopBar';
+import Heading from '../components/home/Heading';
 
 type HomeScreenProps = {};
 
@@ -15,9 +16,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
       scrollViewProps={{style: styles.container}}
       edges={['top', 'left', 'right']}>
       <TopBar openDrawer={() => {}} />
-      <View>
-        <Text>Hello World</Text>
-      </View>
+      <Heading user={{firstName: 'Sayanta'}} />
     </ScrollLayout>
   );
 };
