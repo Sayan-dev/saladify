@@ -7,8 +7,10 @@ import AppTheme from './theme/theme';
 
 import {navigationRef} from './utils/navigation';
 import HomeDrawerNavigator from './HomeDrawerNavigation';
+import GetStartedScreen from './Screens/GetStartedScreen';
 
 export type RootStackParamList = {
+  Start?: undefined;
   HomeDrawer?: undefined;
 };
 
@@ -20,7 +22,9 @@ const RootNavigator = () => {
       <NavigationContainer ref={navigationRef} theme={AppTheme}>
         <Stack.Navigator
           screenOptions={{animation: 'slide_from_bottom', headerShown: false}}
-          initialRouteName="HomeDrawer">
+          initialRouteName="Start">
+          <Stack.Screen name="Start" component={GetStartedScreen} />
+
           <Stack.Screen name="HomeDrawer" component={HomeDrawerNavigator} />
         </Stack.Navigator>
       </NavigationContainer>

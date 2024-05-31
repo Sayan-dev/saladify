@@ -1,17 +1,6 @@
 import React from 'react';
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  LayoutChangeEvent,
-  Platform,
-  Image,
-} from 'react-native';
-import {
-  DrawerNavigationState,
-  NavigationHelpers,
-  useTheme,
-} from '@react-navigation/native';
+import {View, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import {DrawerNavigationState, useTheme} from '@react-navigation/native';
 
 import {
   DrawerContentScrollView,
