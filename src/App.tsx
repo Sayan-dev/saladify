@@ -8,7 +8,7 @@
 import React from 'react';
 import RootNavigator from './RootNavigator';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 
 function App(): React.JSX.Element {
   // const isDarkMode = useColorScheme() === 'dark';
@@ -16,9 +16,6 @@ function App(): React.JSX.Element {
   return (
     <GestureHandlerRootView style={styles.container}>
       <RootNavigator />
-      {/* <View>
-        <Text>Hello</Text>
-      </View> */}
     </GestureHandlerRootView>
   );
 }

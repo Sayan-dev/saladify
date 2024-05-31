@@ -6,11 +6,10 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AppTheme from './theme/theme';
 
 import {navigationRef} from './utils/navigation';
-import HomeScreen from './Screens/HomeScreen';
-import {Text, View} from 'react-native';
+import HomeDrawerNavigator from './HomeDrawerNavigation';
 
 export type RootStackParamList = {
-  Home?: undefined;
+  HomeDrawer?: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -21,8 +20,8 @@ const RootNavigator = () => {
       <NavigationContainer ref={navigationRef} theme={AppTheme}>
         <Stack.Navigator
           screenOptions={{animation: 'slide_from_bottom', headerShown: false}}
-          initialRouteName="Home">
-          <Stack.Screen name="Home" component={HomeScreen} />
+          initialRouteName="HomeDrawer">
+          <Stack.Screen name="HomeDrawer" component={HomeDrawerNavigator} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
