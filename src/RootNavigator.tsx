@@ -8,9 +8,12 @@ import AppTheme from './theme/theme';
 import {navigationRef} from './utils/navigation';
 import HomeDrawerNavigator from './HomeDrawerNavigation';
 import GetStartedScreen from './Screens/GetStartedScreen';
+import LoginScreen from './Screens/LoginScreen';
 
 export type RootStackParamList = {
   Start?: undefined;
+  Login?: undefined;
+
   HomeDrawer?: undefined;
 };
 
@@ -22,8 +25,9 @@ const RootNavigator = () => {
       <NavigationContainer ref={navigationRef} theme={AppTheme}>
         <Stack.Navigator
           screenOptions={{animation: 'slide_from_bottom', headerShown: false}}
-          initialRouteName="Start">
+          initialRouteName="Login">
           <Stack.Screen name="Start" component={GetStartedScreen} />
+          <Stack.Screen name="Login" component={LoginScreen} />
 
           <Stack.Screen name="HomeDrawer" component={HomeDrawerNavigator} />
         </Stack.Navigator>

@@ -9,15 +9,18 @@ import {RootStackParamList} from '../RootNavigator';
 import Onboarding1 from '../components/onboarding/Onboarding1';
 import Onboarding2 from '../components/onboarding/Onboarding2';
 import {save} from '../utils/storage';
-import ScrollLayout from '../components/layouts/ScrollLayout';
+import useInitializeFirebase from '../hooks/useInitializeFirebase';
 
 type GetStartedProps = NativeStackScreenProps<RootStackParamList, 'Start'>;
 
 const GetStartedScreen: React.FC<GetStartedProps> = ({navigation}) => {
   const theme = useTheme();
   const styles = React.useMemo(() => createStyles(theme), [theme]);
+  const [user] = useInitializeFirebase();
+
   const handleGettingStarted = async () => {
     await save('@intro', '1');
+    if (!user) navigation.reset({index: 1, routes: [{name: 'Login'}]});
     navigation.reset({index: 1, routes: [{name: 'HomeDrawer'}]});
   };
   const pagerViewRef = React.useRef<PagerView>(null);
