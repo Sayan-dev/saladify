@@ -1,17 +1,17 @@
-import { StyleSheet, Text, Touchable, View } from 'react-native';
+import {StyleSheet, Text, Touchable, View} from 'react-native';
 import React from 'react';
-import { useTheme } from '@react-navigation/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { ExtendedTheme } from '../../../types';
-import { Product } from '../../../types/entities';
+import {useTheme} from '@react-navigation/native';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import {ExtendedTheme} from '../../../types';
+import {Product} from '../../../types/entities';
 import Typography from '../../common/Typography';
-import { getModifiedAmount } from '../../../utils/helper';
+import {getModifiedAmount} from '../../../utils/helper';
 
 type Props = {
   selectItem: (product: Product) => void;
   itemDetails: Product;
 };
-const ActionItems = ({ selectItem, itemDetails }: Props) => {
+const ActionItems = ({selectItem, itemDetails}: Props) => {
   const theme = useTheme();
 
   const styles = createStyles(theme);

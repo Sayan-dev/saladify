@@ -9,11 +9,14 @@ import {navigationRef} from './utils/navigation';
 import HomeDrawerNavigator from './HomeDrawerNavigation';
 import GetStartedScreen from './Screens/GetStartedScreen';
 import LoginScreen from './Screens/LoginScreen';
+import ItemDetailsScreen, {
+  ItemDetailsScreenParams,
+} from './Screens/ItemDetailsScreen';
 
 export type RootStackParamList = {
   Start?: undefined;
   Login?: undefined;
-
+  ItemDetails?: ItemDetailsScreenParams;
   HomeDrawer?: undefined;
 };
 
@@ -30,6 +33,8 @@ const RootNavigator = () => {
           <Stack.Screen name="Login" component={LoginScreen} />
 
           <Stack.Screen name="HomeDrawer" component={HomeDrawerNavigator} />
+
+          <Stack.Screen name="ItemDetails" component={ItemDetailsScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

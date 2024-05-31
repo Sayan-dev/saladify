@@ -15,6 +15,7 @@ import RecommendedComponent from '../components/home/Recommended';
 import FilterComponent from '../components/home/Filters';
 import {Product} from '../types/entities';
 import useProductStore from '../store/product/selector';
+import {useUser} from '../store/selector';
 
 type HomeScreenProps = CompositeScreenProps<
   DrawerScreenProps<DrawerParamList, 'Home'>,
@@ -23,12 +24,13 @@ type HomeScreenProps = CompositeScreenProps<
 
 const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
   const [, selectProduct] = useProductStore();
+  const [user] = useUser();
 
   const theme = useTheme();
   const [products, , isProductsLoading] = useProductList();
   const selectItem = async (product: Product) => {
     selectProduct({...product, quantity: 1});
-    // navigation.navigate('ItemDetails');
+    navigation.navigate('ItemDetails');
   };
 
   const styles = React.useMemo(() => createStyles(theme), [theme]);
@@ -44,7 +46,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
         open={isProductsLoading}
       />
       <TopBar openDrawer={openDrawer} />
-      <Heading user={{firstName: 'Sayanta'}} />
+      <Heading user={user} />
       <RecommendedComponent selectItem={selectItem} products={products || []} />
       <FilterComponent selectItem={selectItem} products={products || []} />
     </ScrollLayout>
