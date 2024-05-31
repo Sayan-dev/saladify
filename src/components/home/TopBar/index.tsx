@@ -35,9 +35,7 @@ const createStyles = (theme: ExtendedTheme) =>
       alignItems: 'center',
 
       justifyContent: 'space-between',
-      paddingTop: theme.spacing.md,
-      paddingRight: theme.spacing.sm,
-
-      paddingVertical: theme.spacing.sm,
+      marginTop: theme.spacing.lg,
+      paddingVertical: theme.spacing.lg,
     },
   });

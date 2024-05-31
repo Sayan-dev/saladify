@@ -14,6 +14,18 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		7699B88040F8A987B510C191 /* libPods-saladify-saladifyTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-saladify-saladifyTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		2C8AF83B5D8347B7A0F63882 /* Brandon_bld.otf in Resources */ = {isa = PBXBuildFile; fileRef = 39844D4A87A84B1995B7C557 /* Brandon_bld.otf */; };
+		E9BEDA159CC64DA5A4378BE0 /* Brandon_bld_it.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7A36832CBC3445BE935479EA /* Brandon_bld_it.otf */; };
+		D2149DA6F965449F87EFFAE4 /* Brandon_blk.otf in Resources */ = {isa = PBXBuildFile; fileRef = 9FD03C5B9C3A43CC849088F4 /* Brandon_blk.otf */; };
+		6739E6185A4140B58A574095 /* Brandon_blk_it.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0B9918D985D44EB3925DEE2F /* Brandon_blk_it.otf */; };
+		81E3B615D67F498ABE1A1A6E /* Brandon_light.otf in Resources */ = {isa = PBXBuildFile; fileRef = D238808754A44CD180E59487 /* Brandon_light.otf */; };
+		A7F8420E70A7476689D427A9 /* Brandon_light_it.otf in Resources */ = {isa = PBXBuildFile; fileRef = 14291EAA5E1844DAA9476CB9 /* Brandon_light_it.otf */; };
+		067D5519CEF8489CA4493BF6 /* Brandon_med.otf in Resources */ = {isa = PBXBuildFile; fileRef = 907AD2EBC19A48E1A982FE0D /* Brandon_med.otf */; };
+		66FE523B5ED541068E6F8044 /* Brandon_med_it.otf in Resources */ = {isa = PBXBuildFile; fileRef = 193A97151C93411C80E82B0F /* Brandon_med_it.otf */; };
+		B1B9F5BD3B644AD1B5F499A7 /* Brandon_reg.otf in Resources */ = {isa = PBXBuildFile; fileRef = 36BB6A9666354C9BB515EB81 /* Brandon_reg.otf */; };
+		716BA31C1AE646F8B94D51FD /* Brandon_reg_it.otf in Resources */ = {isa = PBXBuildFile; fileRef = D2B07A4ED3AE4104926CD1BD /* Brandon_reg_it.otf */; };
+		F03C327D191941E58E1FF4FE /* Brandon_thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = DE677EEEFB154809A5F17136 /* Brandon_thin.otf */; };
+		7C91422DB0C34829BFD076B6 /* Brandon_thin_it.otf in Resources */ = {isa = PBXBuildFile; fileRef = 16A1A21E49EA475AA0410945 /* Brandon_thin_it.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +48,7 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = saladify/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = saladify/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = saladify/main.m; sourceTree = "<group>"; };
-	    13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = saladify/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = saladify/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-saladify-saladifyTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-saladify-saladifyTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-saladify.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-saladify.debug.xcconfig"; path = "Target Support Files/Pods-saladify/Pods-saladify.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-saladify.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-saladify.release.xcconfig"; path = "Target Support Files/Pods-saladify/Pods-saladify.release.xcconfig"; sourceTree = "<group>"; };
@@ -45,6 +57,18 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = saladify/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-saladify-saladifyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-saladify-saladifyTests.release.xcconfig"; path = "Target Support Files/Pods-saladify-saladifyTests/Pods-saladify-saladifyTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		39844D4A87A84B1995B7C557 /* Brandon_bld.otf */ = {isa = PBXFileReference; name = "Brandon_bld.otf"; path = "../src/assets/fonts/Brandon_bld.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7A36832CBC3445BE935479EA /* Brandon_bld_it.otf */ = {isa = PBXFileReference; name = "Brandon_bld_it.otf"; path = "../src/assets/fonts/Brandon_bld_it.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9FD03C5B9C3A43CC849088F4 /* Brandon_blk.otf */ = {isa = PBXFileReference; name = "Brandon_blk.otf"; path = "../src/assets/fonts/Brandon_blk.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0B9918D985D44EB3925DEE2F /* Brandon_blk_it.otf */ = {isa = PBXFileReference; name = "Brandon_blk_it.otf"; path = "../src/assets/fonts/Brandon_blk_it.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D238808754A44CD180E59487 /* Brandon_light.otf */ = {isa = PBXFileReference; name = "Brandon_light.otf"; path = "../src/assets/fonts/Brandon_light.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		14291EAA5E1844DAA9476CB9 /* Brandon_light_it.otf */ = {isa = PBXFileReference; name = "Brandon_light_it.otf"; path = "../src/assets/fonts/Brandon_light_it.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		907AD2EBC19A48E1A982FE0D /* Brandon_med.otf */ = {isa = PBXFileReference; name = "Brandon_med.otf"; path = "../src/assets/fonts/Brandon_med.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		193A97151C93411C80E82B0F /* Brandon_med_it.otf */ = {isa = PBXFileReference; name = "Brandon_med_it.otf"; path = "../src/assets/fonts/Brandon_med_it.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		36BB6A9666354C9BB515EB81 /* Brandon_reg.otf */ = {isa = PBXFileReference; name = "Brandon_reg.otf"; path = "../src/assets/fonts/Brandon_reg.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D2B07A4ED3AE4104926CD1BD /* Brandon_reg_it.otf */ = {isa = PBXFileReference; name = "Brandon_reg_it.otf"; path = "../src/assets/fonts/Brandon_reg_it.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DE677EEEFB154809A5F17136 /* Brandon_thin.otf */ = {isa = PBXFileReference; name = "Brandon_thin.otf"; path = "../src/assets/fonts/Brandon_thin.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		16A1A21E49EA475AA0410945 /* Brandon_thin_it.otf */ = {isa = PBXFileReference; name = "Brandon_thin_it.otf"; path = "../src/assets/fonts/Brandon_thin_it.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +148,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				7C9AA0F6F9DD4DFEA556EF63 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -149,6 +174,26 @@
 			);
 			path = Pods;
 			sourceTree = "<group>";
+		};
+		7C9AA0F6F9DD4DFEA556EF63 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				39844D4A87A84B1995B7C557 /* Brandon_bld.otf */,
+				7A36832CBC3445BE935479EA /* Brandon_bld_it.otf */,
+				9FD03C5B9C3A43CC849088F4 /* Brandon_blk.otf */,
+				0B9918D985D44EB3925DEE2F /* Brandon_blk_it.otf */,
+				D238808754A44CD180E59487 /* Brandon_light.otf */,
+				14291EAA5E1844DAA9476CB9 /* Brandon_light_it.otf */,
+				907AD2EBC19A48E1A982FE0D /* Brandon_med.otf */,
+				193A97151C93411C80E82B0F /* Brandon_med_it.otf */,
+				36BB6A9666354C9BB515EB81 /* Brandon_reg.otf */,
+				D2B07A4ED3AE4104926CD1BD /* Brandon_reg_it.otf */,
+				DE677EEEFB154809A5F17136 /* Brandon_thin.otf */,
+				16A1A21E49EA475AA0410945 /* Brandon_thin_it.otf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -245,6 +290,18 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				2C8AF83B5D8347B7A0F63882 /* Brandon_bld.otf in Resources */,
+				E9BEDA159CC64DA5A4378BE0 /* Brandon_bld_it.otf in Resources */,
+				D2149DA6F965449F87EFFAE4 /* Brandon_blk.otf in Resources */,
+				6739E6185A4140B58A574095 /* Brandon_blk_it.otf in Resources */,
+				81E3B615D67F498ABE1A1A6E /* Brandon_light.otf in Resources */,
+				A7F8420E70A7476689D427A9 /* Brandon_light_it.otf in Resources */,
+				067D5519CEF8489CA4493BF6 /* Brandon_med.otf in Resources */,
+				66FE523B5ED541068E6F8044 /* Brandon_med_it.otf in Resources */,
+				B1B9F5BD3B644AD1B5F499A7 /* Brandon_reg.otf in Resources */,
+				716BA31C1AE646F8B94D51FD /* Brandon_reg_it.otf in Resources */,
+				F03C327D191941E58E1FF4FE /* Brandon_thin.otf in Resources */,
+				7C91422DB0C34829BFD076B6 /* Brandon_thin_it.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

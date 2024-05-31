@@ -23,6 +23,6 @@ const createStyles = (theme: ExtendedTheme) =>
     text: {
       color: theme.colors.text,
       ...theme.fonts.regular,
-      fontSize: 20,
+      fontSize: theme.fontSize.large,
     },
   });

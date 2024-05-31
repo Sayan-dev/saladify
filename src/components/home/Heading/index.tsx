@@ -18,8 +18,7 @@ const Heading = ({user}: Props) => {
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>
-        <GreetUser user={user} />
-        What fruit salad combo do you want today?
+        <GreetUser user={user} /> What fruit salad combo do you want today?
       </Text>
     </View>
   );
@@ -30,12 +29,13 @@ export default Heading;
 const createStyles = (theme: ExtendedTheme) =>
   StyleSheet.create({
     container: {
-      flexDirection: 'row',
+      flexDirection: 'column',
       justifyContent: 'flex-start',
+      width: 280,
       // width: widthPercentageToDP(70),
     },
     heading: {
-      fontSize: 20,
+      fontSize: theme.fontSize.large,
       color: theme.colors.text,
       ...theme.fonts.medium,
     },
