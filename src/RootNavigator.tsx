@@ -12,12 +12,18 @@ import LoginScreen from './Screens/LoginScreen';
 import ItemDetailsScreen, {
   ItemDetailsScreenParams,
 } from './Screens/ItemDetailsScreen';
+import OrderScreen from './Screens/OrderScreen';
+import SuccessScreen from './Screens/SuccessScreen';
+import TrackOrderScreen from './Screens/TrackOrderScreen';
 
 export type RootStackParamList = {
   Start?: undefined;
   Login?: undefined;
   ItemDetails?: ItemDetailsScreenParams;
   HomeDrawer?: undefined;
+  Orders?: undefined;
+  Success?: undefined;
+  Track?: {orderId: string};
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -35,6 +41,12 @@ const RootNavigator = () => {
           <Stack.Screen name="HomeDrawer" component={HomeDrawerNavigator} />
 
           <Stack.Screen name="ItemDetails" component={ItemDetailsScreen} />
+
+          <Stack.Group>
+            <Stack.Screen name="Orders" component={OrderScreen} />
+            <Stack.Screen name="Success" component={SuccessScreen} />
+            <Stack.Screen name="Track" component={TrackOrderScreen} />
+          </Stack.Group>
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
