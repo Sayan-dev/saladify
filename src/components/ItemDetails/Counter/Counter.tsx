@@ -1,8 +1,8 @@
-import { StyleSheet, View } from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import { useTheme } from '@react-navigation/native';
+import {useTheme} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import type { ExtendedTheme } from '../../../types';
+import type {ExtendedTheme} from '../../../types';
 import Typography from '../../common/Typography';
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   count: number;
 }
 
-const Counter = ({ add, sub, count }: Props) => {
+const Counter = ({add, sub, count}: Props) => {
   const theme = useTheme();
 
   const styles = createStyles(theme);

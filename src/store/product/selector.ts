@@ -1,22 +1,20 @@
 import useProduct from '.';
-import { Order, Product } from '../../types/entities';
+import {Order, Product} from '../../types/entities';
 
 const useProductStore = () =>
   useProduct(state => [
-    state.selectedProduct,
-    state.selectProduct,
+    state.productList,
     state.likeProduct,
     state.addProduct,
     state.subProduct,
-    state.productList,
+    state.updateProduct,
     state.updateProductList,
   ]) as [
-    Order | null,
-    (product: Order | null) => void,
-    (like: boolean | null) => void,
-    () => void,
-    () => void,
     Order[],
-    (productList: Product[]) => void,
+    (productId: string) => void,
+    (productId: string) => void,
+    (productId: string) => void,
+    (product: Order) => void,
+    (products: Product[]) => void,
   ];
 export default useProductStore;

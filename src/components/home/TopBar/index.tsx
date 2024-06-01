@@ -5,12 +5,15 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 import {ExtendedTheme} from '../../../types';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Hamburger from '../../../assets/icons/Hamburger';
+import Typography from '../../common/Typography';
 
 type TopBarProps = {
+  goToBasket: () => void;
+
   openDrawer: () => void;
 };
 
-const TopBar = ({openDrawer}: TopBarProps) => {
+const TopBar = ({openDrawer, goToBasket}: TopBarProps) => {
   const theme = useTheme();
 
   const styles = createStyles(theme);
@@ -21,7 +24,11 @@ const TopBar = ({openDrawer}: TopBarProps) => {
         <Hamburger />
       </TouchableOpacity>
       {/* <FAIcon name="shopping-basket" color={theme.colors.primary} size={20} /> */}
-      <Icon name="shopping-basket" color={theme.colors.primary} size={24} />
+      <TouchableOpacity onPress={goToBasket} style={styles.basketContainer}>
+        {/* <Image source={BasketIcon} style={styles.basket} /> */}
+        <Icon name="shopping-basket" color={theme.colors.primary} size={24} />
+        <Typography fontSize={theme.fontSize.small}>My Basket</Typography>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -37,5 +44,8 @@ const createStyles = (theme: ExtendedTheme) =>
       justifyContent: 'space-between',
       marginTop: theme.spacing.lg,
       paddingVertical: theme.spacing.lg,
+    },
+    basketContainer: {
+      alignItems: 'center',
     },
   });

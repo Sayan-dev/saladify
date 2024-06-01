@@ -2,12 +2,14 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {useTheme} from '@react-navigation/native';
 import {ExtendedTheme} from '../../../types';
-import useProductStore from '../../../store/product/selector';
 import {getIngredientString} from '../../../utils/helper';
+import {Ingredient} from '../../../types/entities';
 
-const InfoComponent = () => {
-  const [selectedProduct] = useProductStore();
+type InfoProps = {
+  ingredients: Ingredient[];
+};
 
+const InfoComponent = ({ingredients}: InfoProps) => {
   const theme = useTheme();
 
   const styles = createStyles(theme);
@@ -15,7 +17,7 @@ const InfoComponent = () => {
     <View style={styles.container}>
       <Text style={[styles.body, styles.label]}>One Pack Contains:</Text>
       <Text style={[styles.body, styles.info]}>
-        {getIngredientString(selectedProduct?.ingredients || [])}
+        {getIngredientString(ingredients || [])}
         {/* Red Quinoa, Lime, Honey, Blueberries, Strawberries, Mango, Fresh mint. */}
       </Text>
     </View>

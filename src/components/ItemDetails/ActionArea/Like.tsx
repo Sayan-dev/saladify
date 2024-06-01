@@ -1,14 +1,18 @@
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import { useTheme } from '@react-navigation/native';
+import {useTheme} from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import type { ExtendedTheme } from '../../../types';
+import type {ExtendedTheme} from '../../../types';
 import useLike from '../../../hooks/useLike';
 
-const LikeButton = () => {
+type LikeProductProps = {
+  productId: string;
+};
+
+const LikeButton = ({productId}: LikeProductProps) => {
   const theme = useTheme();
 
-  const [like, handleLike] = useLike();
+  const [like, handleLike] = useLike(productId);
 
   const styles = createStyles(theme);
   return (

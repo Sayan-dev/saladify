@@ -20,6 +20,7 @@ import useOrderStore from '../store/order/selector';
 import Topbar from '../components/common/TopBar';
 import {useProduct} from '../api/queries/product.queries';
 import InfoComponent from '../components/ItemDetails/Info';
+import {Order} from '../types/entities';
 
 type ItemDetailsProps = NativeStackScreenProps<
   RootStackParamList,
@@ -27,46 +28,64 @@ type ItemDetailsProps = NativeStackScreenProps<
 >;
 
 export type ItemDetailsScreenParams = {
-  goBack: boolean;
+  productId: string;
+  goBack?: boolean;
 };
 
-const ItemDetailsScreen: React.FC<ItemDetailsProps> = ({navigation}) => {
-  const route = useRoute<RouteProp<RootStackParamList, 'ItemDetails'>>();
-
+const ItemDetailsScreen: React.FC<ItemDetailsProps> = ({navigation, route}) => {
   const theme = useTheme();
-  const [count, setCount] = useState(0);
-  const [selectedItem, setSelectedItem, , addProduct, subProduct] =
-    useProductStore();
+  const [productList, , addProduct, subProduct] = useProductStore();
   const [orders, , createOrder, addOrder, subOrder, removeOrder] =
     useOrderStore();
-  const product = useProduct(selectedItem?._id);
+  const product = useProduct(route.params?.productId);
+
+  let initialSelectedItem: Order = {
+    _id: '',
+    price: 0,
+    quantity: 0,
+    image_url: '',
+    ingredients: [],
+    liked: false,
+    name: '',
+    suggestions: '',
+  };
+
+  let selectedItem = {
+    ...(productList.find(item => item._id === route.params.productId) ||
+      initialSelectedItem),
+    ...product,
+  };
+
+  if (orders[selectedItem._id]) {
+    selectedItem = {
+      ...selectedItem,
+      ...orders[selectedItem._id],
+    };
+  }
 
   const styles = React.useMemo(() => createStyles(theme), [theme]);
 
-  useEffect(() => {
-    if (selectedItem) {
-      if (orders[selectedItem._id]) setCount(orders[selectedItem._id].quantity);
-      else setCount(selectedItem.quantity || 0);
-    } else setCount(0);
-  }, [orders, selectedItem]);
-
   const navigateToOrderScreen = () => {
-    if (route.params?.goBack) navigation.goBack();
-    else navigation.replace('Orders');
+    if (route.params?.goBack) {
+      navigation.goBack();
+    } else {
+      navigation.replace('Orders');
+    }
   };
 
   const handleCreateOrder = () => {
-    if (selectedItem) {
-      if (orders[selectedItem._id]) return;
-      createOrder(selectedItem);
+    if (orders[selectedItem._id]) {
+      return;
     }
+    createOrder(selectedItem);
   };
 
   const handleAddOrder = () => {
     if (selectedItem) {
-      if (orders[selectedItem._id]) addOrder(selectedItem._id);
-      else {
-        addProduct();
+      if (orders[selectedItem._id]) {
+        addOrder(selectedItem._id);
+      } else {
+        addProduct(selectedItem._id);
       }
     }
   };
@@ -81,7 +100,7 @@ const ItemDetailsScreen: React.FC<ItemDetailsProps> = ({navigation}) => {
           subOrder(selectedItem._id);
         }
       } else {
-        subProduct();
+        subProduct(selectedItem._id);
       }
     }
   };
@@ -90,50 +109,41 @@ const ItemDetailsScreen: React.FC<ItemDetailsProps> = ({navigation}) => {
     handleCreateOrder();
     navigateToOrderScreen();
   };
-  useEffect(() => {
-    if (product.data) {
-      setSelectedItem({
-        ...selectedItem,
-        quantity: selectedItem?.quantity || 0,
-        ...product.data,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [product.data]);
 
-  if (product.data) {
-    return (
-      <BaseLayout>
-        <View style={styles.heading}>
-          <Topbar title="" goBack={navigation.goBack} />
+  return (
+    <BaseLayout>
+      <View style={styles.heading}>
+        <Topbar title="" goBack={navigation.goBack} />
+      </View>
+      <View style={styles.subContainer}>
+        <View style={styles.preview}>
+          <Preview />
         </View>
-        <View style={styles.subContainer}>
-          <View style={styles.preview}>
-            <Preview />
-          </View>
-          <View style={styles.detailing}>
-            <Text style={styles.label}>{selectedItem?.name}</Text>
-            <Counter
-              data={selectedItem && selectedItem}
-              add={handleAddOrder}
-              sub={handleSubOrder}
-              count={count}
-            />
-            <InfoComponent />
-            <Suggestions />
-            <ActionArea
-              orderExists={
-                selectedItem ? orders[selectedItem._id] && true : false
-              }
-              liked={selectedItem?.liked || false}
-              basketAction={handleAddToBasket}
-            />
-          </View>
+        <View style={styles.detailing}>
+          <Text style={styles.label}>{selectedItem?.name}</Text>
+          <Counter
+            data={selectedItem && selectedItem}
+            add={handleAddOrder}
+            sub={handleSubOrder}
+            count={selectedItem.quantity}
+          />
+          {selectedItem.ingredients && (
+            <InfoComponent ingredients={selectedItem.ingredients} />
+          )}
+          {selectedItem.suggestions && (
+            <Suggestions suggestions={selectedItem.suggestions} />
+          )}
+          <ActionArea
+            orderExists={
+              selectedItem ? orders[selectedItem._id] && true : false
+            }
+            productId={selectedItem?._id}
+            basketAction={handleAddToBasket}
+          />
         </View>
-      </BaseLayout>
-    );
-  }
-  return <View />;
+      </View>
+    </BaseLayout>
+  );
 };
 
 export default ItemDetailsScreen;

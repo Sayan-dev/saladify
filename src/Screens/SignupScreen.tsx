@@ -1,17 +1,11 @@
-import {
-  Image,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {StyleSheet, TextInput, View} from 'react-native';
 import React from 'react';
 import * as yup from 'yup';
 import {useTheme} from '@react-navigation/native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {FormProvider, useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import {LoginRequest, UserRegisterRequest} from '../types/entities';
+import {SignUpRequest, UserRegisterRequest} from '../types/entities';
 import {RootStackParamList} from '../RootNavigator';
 import type {ExtendedTheme} from '../types';
 import ScrollLayout from '../components/layouts/ScrollLayout';
@@ -19,20 +13,21 @@ import Button from '../components/common/Button';
 import Typography from '../components/common/Typography';
 import ControlledFloatingTextInput from '../components/common/form/ControlledFloatingTextInput';
 import PasswordInput from '../components/common/form/PasswordInput';
-import {get} from '../utils/storage';
-
-import Logo from '../assets/images/logo.png';
+import {useRegister} from '../api/queries/auth.queries';
+import {remove} from '../utils/storage';
 import {useUser} from '../store/selector';
-import {useLogin} from '../api/queries/auth.queries';
 
 const schema = yup.object().shape({
   email: yup.string().email('Must be a valid email').required('Required'),
+  firstName: yup.string(),
+  middleName: yup.string(),
+  lastName: yup.string(),
   password: yup.string().required('Required'),
 });
 
-type LoginScreenProps = NativeStackScreenProps<RootStackParamList, 'Login'>;
+type SignupScreenProps = NativeStackScreenProps<RootStackParamList, 'Signup'>;
 
-const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
+const SignupScreen: React.FC<SignupScreenProps> = ({navigation}) => {
   const theme = useTheme();
   const styles = React.useMemo(() => createStyles(theme), [theme]);
   const [, updateUser] = useUser();
@@ -41,48 +36,43 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
     resolver: yupResolver(schema),
     defaultValues: {
       email: '',
+      firstName: '',
+      middleName: '',
+      lastName: '',
       password: '',
     },
   });
 
-  const Login = useLogin();
+  const signUp = useRegister();
   const onSubmit = form.handleSubmit(async data => {
-    Login.mutate(
-      {email: data.email, password: data.password},
+    signUp.mutate(
+      {data, password: data.password},
       {
         onSuccess: async userData => {
           updateUser(userData || null);
 
-          const introFlag = await get('@intro');
-          if (introFlag)
-            navigation.reset({index: 1, routes: [{name: 'HomeDrawer'}]});
-          else {
-            navigation.reset({index: 1, routes: [{name: 'Start'}]});
-          }
+          await remove('@intro');
+          navigation.reset({index: 1, routes: [{name: 'HomeDrawer'}]});
         },
       },
     );
   });
 
-  const inputs = React.useRef<Record<keyof LoginRequest, TextInput | null>>({
+  const inputs = React.useRef<Record<keyof SignUpRequest, TextInput | null>>({
     email: null,
+    firstName: null,
+    middleName: null,
+    lastName: null,
     password: null,
   });
-
-  const goToSignUp = () => {
-    navigation.navigate('Signup');
-  };
   return (
     <ScrollLayout
       scrollViewProps={{style: styles.container}}
       edges={['top', 'left', 'right']}>
-      <View style={styles.image}>
-        <Image source={Logo} style={styles.logo} />
-      </View>
       <FormProvider {...form}>
         <View style={styles.form}>
           <Typography fontStyle="medium" fontSize="h1" style={styles.heading}>
-            Sign In
+            Sign Up
           </Typography>
 
           <ControlledFloatingTextInput
@@ -92,6 +82,40 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
             name="email"
             label="Email"
             keyboardType="email-address"
+            autoCapitalize="none"
+            returnKeyType="next"
+            onNext={() => inputs.current.firstName?.focus()}
+          />
+
+          <ControlledFloatingTextInput
+            ref={el => {
+              inputs.current.firstName = el;
+            }}
+            name="firstName"
+            label="First name"
+            keyboardType="name-phone-pad"
+            autoCapitalize="none"
+            returnKeyType="next"
+            onNext={() => inputs.current.middleName?.focus()}
+          />
+          <ControlledFloatingTextInput
+            ref={el => {
+              inputs.current.middleName = el;
+            }}
+            name="middleName"
+            label="Middle name"
+            keyboardType="name-phone-pad"
+            autoCapitalize="none"
+            returnKeyType="next"
+            onNext={() => inputs.current.lastName?.focus()}
+          />
+          <ControlledFloatingTextInput
+            ref={el => {
+              inputs.current.lastName = el;
+            }}
+            name="lastName"
+            label="Last name"
+            keyboardType="name-phone-pad"
             autoCapitalize="none"
             returnKeyType="next"
             onNext={() => inputs.current.password?.focus()}
@@ -108,19 +132,13 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
           />
 
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={goToSignUp} style={styles.textButton}>
-              <Typography fontStyle="medium" fontSize="large">
-                Sign up
-              </Typography>
-            </TouchableOpacity>
-
             <Button
               onPress={onSubmit}
               style={styles.button}
               RightIconName="arrow-right"
               // isLoading={login.isLoading}
             >
-              Login
+              Sign Up
             </Button>
           </View>
         </View>
@@ -129,7 +147,7 @@ const LoginScreen: React.FC<LoginScreenProps> = ({navigation}) => {
   );
 };
 
-export default LoginScreen;
+export default SignupScreen;
 const createStyles = (theme: ExtendedTheme) =>
   StyleSheet.create({
     container: {
@@ -140,15 +158,6 @@ const createStyles = (theme: ExtendedTheme) =>
       ...theme.fonts.bold,
       fontSize: 42,
       marginBottom: theme.spacing.sm,
-    },
-    image: {
-      flexDirection: 'row',
-      justifyContent: 'center',
-    },
-    logo: {
-      width: 200,
-      height: 200,
-      marginVertical: 20,
     },
     form: {
       marginBottom: theme.spacing.lg,
@@ -166,7 +175,7 @@ const createStyles = (theme: ExtendedTheme) =>
       paddingVertical: 10,
       paddingHorizontal: 20,
     },
-    LoginContainer: {
+    signUpContainer: {
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'baseline',

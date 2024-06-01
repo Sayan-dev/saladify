@@ -2,22 +2,21 @@ import {useQueryClient} from '@tanstack/react-query';
 import {useLikeDislikeProduct} from '../api/queries/product.queries';
 import useProductStore from '../store/product/selector';
 
-const useLike = (): [boolean, () => void] => {
-  const [selectedItem, , likeProduct] = useProductStore();
+const useLike = (productId: string): [boolean, () => void] => {
+  const [productList, likeProduct] = useProductStore();
   const likeProductQuery = useLikeDislikeProduct();
 
-  const queryClient = useQueryClient();
-
+  const product = productList.find(item => item._id === productId);
+  console.log(product, product?.liked, 'Hello');
   const handleLike = (): void => {
-    likeProduct(!selectedItem?.liked);
-    if (selectedItem?._id)
-      likeProductQuery.mutate({
-        productId: selectedItem?._id,
-        like: !selectedItem?.liked,
-      });
+    likeProduct(productId);
+    likeProductQuery.mutate({
+      productId: productId,
+      like: !product?.liked,
+    });
   };
 
-  return [selectedItem?.liked || false, handleLike];
+  return [product?.liked || false, handleLike];
 };
 
 export default useLike;

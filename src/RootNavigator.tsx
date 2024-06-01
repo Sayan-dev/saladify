@@ -15,11 +15,15 @@ import ItemDetailsScreen, {
 import OrderScreen from './Screens/OrderScreen';
 import SuccessScreen from './Screens/SuccessScreen';
 import TrackOrderScreen from './Screens/TrackOrderScreen';
+import SignupScreen from './Screens/SignupScreen';
+import SplashScreen from './Screens/SplashScreen';
 
 export type RootStackParamList = {
+  Splash?: undefined;
   Start?: undefined;
   Login?: undefined;
-  ItemDetails?: ItemDetailsScreenParams;
+  Signup?: undefined;
+  ItemDetails: ItemDetailsScreenParams;
   HomeDrawer?: undefined;
   Orders?: undefined;
   Success?: undefined;
@@ -34,9 +38,11 @@ const RootNavigator = () => {
       <NavigationContainer ref={navigationRef} theme={AppTheme}>
         <Stack.Navigator
           screenOptions={{animation: 'slide_from_bottom', headerShown: false}}
-          initialRouteName="Login">
+          initialRouteName="Splash">
+          <Stack.Screen name="Splash" component={SplashScreen} />
           <Stack.Screen name="Start" component={GetStartedScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Signup" component={SignupScreen} />
 
           <Stack.Screen name="HomeDrawer" component={HomeDrawerNavigator} />
 

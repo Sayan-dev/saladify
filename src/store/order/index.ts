@@ -1,5 +1,5 @@
-import { create, StateCreator } from 'zustand';
-import { Order } from '../../types/entities';
+import {create, StateCreator} from 'zustand';
+import {Order} from '../../types/entities';
 
 interface OrderSlice {
   orders: Record<string, Order>;
@@ -17,7 +17,7 @@ const useOrderSlice: StateCreator<Slice, [], [], OrderSlice> = set => ({
   total: 0,
   createOrder: (order: Order) =>
     set(state => {
-      const newState = { ...state };
+      const newState = {...state};
       if (newState.orders[order._id]) return newState;
       newState.orders = {
         ...newState.orders,
@@ -28,7 +28,7 @@ const useOrderSlice: StateCreator<Slice, [], [], OrderSlice> = set => ({
     }),
   addOrder: (orderId: string) =>
     set(prevState => {
-      const newState = { ...prevState };
+      const newState = {...prevState};
       if (newState.orders[orderId]) {
         newState.orders[orderId].quantity += 1;
         newState.total += newState.orders[orderId].price || 0;
@@ -39,7 +39,7 @@ const useOrderSlice: StateCreator<Slice, [], [], OrderSlice> = set => ({
   subOrder: (orderId: string) =>
     set(prevState => {
       if (prevState.orders[orderId].quantity > 1) {
-        const newState = { ...prevState };
+        const newState = {...prevState};
         if (newState.orders[orderId]) {
           newState.orders[orderId].quantity -= 1;
           newState.total -= newState.orders[orderId].price || 0;
@@ -50,7 +50,7 @@ const useOrderSlice: StateCreator<Slice, [], [], OrderSlice> = set => ({
     }),
   removeOrder: (orderId: string) =>
     set(prevState => {
-      const newState = { ...prevState };
+      const newState = {...prevState};
       if (newState.orders[orderId]) {
         newState.total -= newState.orders[orderId].price || 0;
 

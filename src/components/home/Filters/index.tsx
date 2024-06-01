@@ -1,11 +1,11 @@
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
+import {SafeAreaView, ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import { useTheme } from '@react-navigation/native';
+import {useTheme} from '@react-navigation/native';
 import LinearGradient from 'react-native-linear-gradient';
-import { ExtendedTheme } from '../../../types';
+import {ExtendedTheme} from '../../../types';
 import ItemCard from '../../common/Card/ItemCard';
 import ActionItems from './ActionItems';
-import { Product } from '../../../types/entities';
+import {Product} from '../../../types/entities';
 
 // const products = [
 //   {
@@ -42,7 +42,7 @@ type Props = {
   products: Product[];
 };
 
-const FilterComponent = ({ selectItem, products }: Props) => {
+const FilterComponent = ({selectItem, products}: Props) => {
   const theme = useTheme();
 
   const styles = createStyles(theme);
@@ -52,18 +52,23 @@ const FilterComponent = ({ selectItem, products }: Props) => {
         <Text style={styles.label}>Hottest</Text>
         <LinearGradient
           style={styles.productContainer}
-          colors={[theme.colors.background, '#E5E5E5', theme.colors.background]}
-        >
+          colors={[
+            theme.colors.background,
+            '#E5E5E5',
+            theme.colors.background,
+          ]}>
           <ScrollView horizontal style={styles.products}>
             {products.map(product => (
               <ItemCard
                 key={product._id}
                 data={product}
-                ActionItems={<ActionItems itemDetails={product} selectItem={selectItem} />}
+                ActionItems={
+                  <ActionItems itemDetails={product} selectItem={selectItem} />
+                }
                 options={{
-                  image: { width: 60, height: 60 },
-                  card: { width: 150, height: 150, paddingHorizontal: 10 },
-                  logo: { flex: 2 },
+                  image: {width: 60, height: 60},
+                  card: {width: 150, height: 150, paddingHorizontal: 10},
+                  logo: {flex: 2},
                 }}
               />
             ))}

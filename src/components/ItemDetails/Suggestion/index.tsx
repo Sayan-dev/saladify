@@ -1,18 +1,19 @@
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import { useTheme } from '@react-navigation/native';
-import { ExtendedTheme } from '../../../types';
-import useProductStore from '../../../store/product/selector';
+import {useTheme} from '@react-navigation/native';
+import {ExtendedTheme} from '../../../types';
 
-const Suggestions = () => {
-  const [selectedProduct] = useProductStore();
+type SuggestionProps = {
+  suggestions: string;
+};
 
+const Suggestions = ({suggestions}: SuggestionProps) => {
   const theme = useTheme();
 
   const styles = createStyles(theme);
   return (
     <View style={styles.container}>
-      <Text style={styles.body}>{selectedProduct?.suggestions}</Text>
+      <Text style={styles.body}>{suggestions}</Text>
     </View>
   );
 };

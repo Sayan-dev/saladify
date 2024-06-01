@@ -4,7 +4,7 @@ import {useProducts} from '../api/queries/product.queries';
 import {Order} from '../types/entities';
 
 export default function useProductList(): [Order[], () => void, boolean] {
-  const [, , , , , productList, updateProductList] = useProductStore();
+  const [productList, , , , , updateProductList] = useProductStore();
   const products = useProducts();
 
   const handleUpdateProduct = () => {
@@ -12,7 +12,6 @@ export default function useProductList(): [Order[], () => void, boolean] {
     console.log('Hello');
   };
 
-  console.log(products, 'Hello');
   useEffect(() => {
     if (products.data) {
       updateProductList(products.data);

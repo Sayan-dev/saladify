@@ -23,19 +23,20 @@ type HomeScreenProps = CompositeScreenProps<
 >;
 
 const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
-  const [, selectProduct] = useProductStore();
   const [user] = useUser();
 
   const theme = useTheme();
   const [products, , isProductsLoading] = useProductList();
   const selectItem = async (product: Product) => {
-    selectProduct({...product, quantity: 1});
-    navigation.navigate('ItemDetails');
+    navigation.navigate('ItemDetails', {productId: product._id});
   };
 
   const styles = React.useMemo(() => createStyles(theme), [theme]);
   const openDrawer = () => {
     navigation.openDrawer();
+  };
+  const goToBasket = () => {
+    navigation.navigate('Orders');
   };
   return (
     <ScrollLayout
@@ -45,7 +46,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
         loadingText="Fetching all products. It might delay due to server restart. Please be patient"
         open={isProductsLoading}
       />
-      <TopBar openDrawer={openDrawer} />
+      <TopBar goToBasket={goToBasket} openDrawer={openDrawer} />
       <Heading user={user} />
       <RecommendedComponent selectItem={selectItem} products={products || []} />
       <FilterComponent selectItem={selectItem} products={products || []} />

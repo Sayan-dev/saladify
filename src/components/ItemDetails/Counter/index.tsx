@@ -1,10 +1,10 @@
-import { StyleSheet, View } from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
-import { useTheme } from '@react-navigation/native';
-import type { ExtendedTheme } from '../../../types';
+import {useTheme} from '@react-navigation/native';
+import type {ExtendedTheme} from '../../../types';
 import Counter from './Counter';
 import Price from './Price';
-import { Product } from '../../../types/entities';
+import {Product} from '../../../types/entities';
 
 interface Props {
   add: () => void;
@@ -13,7 +13,7 @@ interface Props {
   data: Product | null;
 }
 
-const CounterComponent = ({ data, add, sub, count }: Props) => {
+const CounterComponent = ({data, add, sub, count}: Props) => {
   const theme = useTheme();
 
   const styles = createStyles(theme);

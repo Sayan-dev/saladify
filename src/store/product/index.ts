@@ -2,73 +2,78 @@ import {create, StateCreator} from 'zustand';
 import {Order, Product} from '../../types/entities';
 
 interface ProductSlice {
-  selectedProduct: Order | null;
   productList: Order[];
-  selectProduct: (product: Order) => void;
-  likeProduct: (like: boolean) => void;
-  addProduct: () => void;
-  subProduct: () => void;
-  updateProductList: (productList: Product[]) => void;
+  likeProduct: (productId: string) => void;
+  addProduct: (productId: string) => void;
+  subProduct: (productId: string) => void;
+  updateProduct: (product: Order) => void;
+  updateProductList: (products: Product[]) => void;
 }
 
 type Slice = ProductSlice;
 
 const useProductSlice: StateCreator<Slice, [], [], ProductSlice> = set => ({
-  selectedProduct: null,
   productList: [],
-  selectProduct: (product: Order) =>
-    set(state => ({state, selectedProduct: product})),
-  likeProduct: (like: boolean) =>
+  likeProduct: (productId: string) =>
     set(prevState => {
       const newState = {...prevState};
-      if (newState.selectedProduct) {
-        newState.selectedProduct.liked = like;
+
+      const productIndex = newState.productList.findIndex(
+        item => item._id === productId,
+      );
+      if (productIndex > -1) {
+        newState.productList[productIndex].liked =
+          !newState.productList[productIndex].liked;
       }
       return newState;
     }),
-  addProduct: () =>
+  addProduct: (productId: string) =>
     set(prevState => {
       const newState = {...prevState};
-      if (newState.selectedProduct) {
-        if (newState.selectedProduct.quantity)
-          newState.selectedProduct.quantity += 1;
-        else {
-          newState.selectedProduct.quantity = 1;
-        }
+
+      const productIndex = newState.productList.findIndex(
+        item => item._id === productId,
+      );
+      if (productIndex > -1) {
+        newState.productList[productIndex].quantity += 1;
       }
       return newState;
     }),
-  subProduct: () =>
+  subProduct: (productId: string) =>
     set(prevState => {
-      if (prevState.selectedProduct && prevState.selectedProduct.quantity > 1) {
-        const newState = {...prevState};
-        if (newState.selectedProduct) {
-          if (newState.selectedProduct.quantity)
-            newState.selectedProduct.quantity -= 1;
-          else {
-            newState.selectedProduct.quantity = 1;
-          }
-        }
-        return newState;
-      }
-      return prevState;
-    }),
-  updateProductList: (productList: Product[]) =>
-    set(prevState => {
-      const newProducts = productList.map(product => {
-        const itemIndex = prevState.productList.findIndex(
-          productItem => productItem._id === product._id,
-        );
-        if (itemIndex > -1) {
-          return {
-            ...product,
-            quantity: prevState.productList[itemIndex].quantity,
-          };
-        }
-        return {...product, quantity: 0};
-      });
       const newState = {...prevState};
-      newState.productList = newProducts;
+
+      const productIndex = newState.productList.findIndex(
+        item => item._id === productId,
+      );
+      if (
+        productIndex > -1 &&
+        newState.productList[productIndex].quantity > 0
+      ) {
+        newState.productList[productIndex].quantity -= 1;
+      }
+      return newState;
+    }),
+  updateProduct: (product: Order) =>
+    set(prevState => {
+      const newState = {...prevState};
+
+      const productIndex = newState.productList.findIndex(
+        item => item._id === product._id,
+      );
+      newState.productList[productIndex] = {
+        ...product,
+      };
+      return newState;
+    }),
+  updateProductList: (products: Product[]) =>
+    set(prevState => {
+      const newState = {...prevState};
+
+      newState.productList = products.map(product => ({
+        ...product,
+        quantity: 0,
+      }));
       return newState;
     }),
 });

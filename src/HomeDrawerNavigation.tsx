@@ -2,6 +2,7 @@ import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import HomeScreen from './Screens/HomeScreen';
 import SideBar, {SideBarProps} from './components/common/SideBar';
+import MyOrderScreen from './Screens/MyOrdersScreen';
 
 export type DrawerParamList = {
   Home: undefined;
@@ -22,6 +23,7 @@ const HomeDrawerNavigator: React.FC = () => (
     // tabBar={props => <TabBar {...(props as TabBarProps)} />}
   >
     <Drawer.Screen name="Home" component={HomeScreen} />
+    <Drawer.Screen name="MyOrders" component={MyOrderScreen} />
   </Drawer.Navigator>
 );
 
