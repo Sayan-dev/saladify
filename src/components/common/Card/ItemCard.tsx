@@ -43,8 +43,12 @@ const ItemCard = ({data, ActionItems, options}: Props) => {
       ]}>
       <View style={[styles.logo, {flex: options?.logo?.flex || 3}]}>
         <Preview
-          width={options?.image?.width || 80}
-          height={options?.image?.height || 80}
+          url={data.image_url}
+          style={{
+            height: options?.image?.height || 80,
+            width: options?.image?.width || 80,
+            ...styles.previewImage,
+          }}
         />
       </View>
       <View style={styles.content}>
@@ -77,6 +81,7 @@ const createStyles = (theme: ExtendedTheme) =>
       flex: 3,
       alignItems: 'center',
     },
+    previewImage: {},
     content: {
       flex: 2,
       paddingTop: 5,

@@ -117,7 +117,7 @@ const ItemDetailsScreen: React.FC<ItemDetailsProps> = ({navigation, route}) => {
       </View>
       <View style={styles.subContainer}>
         <View style={styles.preview}>
-          <Preview />
+          <Preview url={selectedItem.image_url} style={styles.previewImage} />
         </View>
         <View style={styles.detailing}>
           <Text style={styles.label}>{selectedItem?.name}</Text>
@@ -160,7 +160,14 @@ const createStyles = (theme: ExtendedTheme) =>
 
       backgroundColor: theme.colors.primary,
     },
+    previewImage: {
+      width: 200,
+      height: 200,
+      borderRadius: 20,
+      elevation: 1,
+    },
     preview: {
+      padding: 5,
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',

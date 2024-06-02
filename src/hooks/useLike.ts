@@ -7,7 +7,6 @@ const useLike = (productId: string): [boolean, () => void] => {
   const likeProductQuery = useLikeDislikeProduct();
 
   const product = productList.find(item => item._id === productId);
-  console.log(product, product?.liked, 'Hello');
   const handleLike = (): void => {
     likeProduct(productId);
     likeProductQuery.mutate({

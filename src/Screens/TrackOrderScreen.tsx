@@ -54,7 +54,6 @@ const TrackOrderScreen: React.FC<TrackOrderScreenProps> = ({
   };
 
   useEffect(() => {
-    console.log(orderDetails.data);
     switch (orderDetails.data?.trackingStatus) {
       case OrderEvent.take_order:
         setTakeOrder(true);
